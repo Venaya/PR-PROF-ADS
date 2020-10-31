@@ -64,7 +64,7 @@ class RegisterForm extends HTMLElement{
     }
 
     _fetch = () => {      
-        this._submitData('http://localhost:7777/api/user', 'GET')
+        this._submitData(`${process.env.URL}` + '/api/user', 'GET')
         .then((response) =>
         {           
             if(!response.ok) throw new Error(response.statusText);   
@@ -74,7 +74,7 @@ class RegisterForm extends HTMLElement{
             alert('Cadastro realizado com sucesso');
         })
         .then(() => {
-            window.location.replace('http://localhost:3333/login');
+  
         })
         .catch(error => alert(error.message));
     }
@@ -83,7 +83,7 @@ class RegisterForm extends HTMLElement{
         try {
             const headers = new Headers({
                 'Content-Type': 'application/json',
-                'Origin': 'http://localhost:3333'
+                'Origin': process.env.LOCAL
             });
 
             return await fetch(url, {

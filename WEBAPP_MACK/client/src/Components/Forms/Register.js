@@ -93,7 +93,7 @@ class RegisterForm extends HTMLElement{
 
         console.log(JSON.stringify(Object.fromEntries(formData)));
 
-        this._submitData('http://localhost:7777/api/user', 'POST', formData)
+        this._submitData(`${process.env.URL}` + '/api/user', 'POST', formData)
         .then((response) =>
         {           
             if(!response.ok) throw new Error(response.statusText);   
@@ -103,7 +103,7 @@ class RegisterForm extends HTMLElement{
             alert('Cadastro realizado com sucesso');
         })
         .then(() => {
-            window.location.replace('http://localhost:3333/login');
+            window.location.replace(`${process.env.LOCAL}` + '/login');
         })
         .catch(error => alert(error.message));
     }
@@ -112,7 +112,7 @@ class RegisterForm extends HTMLElement{
         try {
             const headers = new Headers({
                 'Content-Type': 'application/json',
-                'Origin': 'http://localhost:3333'
+                'Origin': process.env.LOCAL
             });
 
             return await fetch(url, {

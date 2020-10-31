@@ -125,7 +125,7 @@ class LoginForm extends HTMLElement{
 
             <div class="container">
                 <div class="card">
-                    <form id="loginform" action="http://localhost:7777/api/login" method="POST" redirect="" submit="Login">    
+                    <form id="loginform">    
                         <div class="icon">
                             <img src="${this.Image}" />                            
                         </div>
