@@ -1,0 +1,45 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body app-router{
+    display: grid;
+    grid-template-areas: 
+    "Aside Header Header"
+    "Aside Nav Nav"
+    "Aside Main Main"
+    "Aside Footer Footer";
+
+    grid-template-columns: 1fr 3fr 3fr;
+    grid-template-rows: 1fr 1fr 6fr 1fr;
+
+    width: 100vw;
+    height: 100vh;
+
+    position: absolute;
+}
+
+app-router > app-header{
+    grid-area: Header;
+    background-color: black;
+}
+
+app-router > app-nav{
+    grid-area: Nav;
+    background-color: blue;
+}
+
+app-router > app-aside{
+    grid-area: Aside;
+}
+
+app-router > app-view{
+    grid-area: Main;
+}
+
+app-router > app-footer{
+    grid-area: Footer;
+    background-color: yellow;
+}
