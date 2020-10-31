@@ -16,7 +16,7 @@ const options = {
     subject: process.env.JWT_SUBJECT,
     audience: process.env.JWT_AUDIENCE,
     expiresIn: process.env.JWT_EXPIRESIN,
-    algorithm: "RS512"
+    algorithm: process.env.JWT_ALGORITHM
 }
 
 verifyToken = (token) => {
