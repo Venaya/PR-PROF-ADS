@@ -1,14 +1,12 @@
 require('dotenv').config();
 
 const crypto = require('crypto');
-const salt_length = 128;
-const hash_length = 256;
 
 hash = (password) => {
     return new Promise((resolve, reject) => {
-        const salt = crypto.randomBytes(salt_length).toString('hex');
+        const salt = crypto.randomBytes(process.env.SALT_LENGTH).toString('hex');
 
-        crypto.scrypt(password, salt, hash_length, (err, derivedKey) => {
+        crypto.scrypt(password, salt, process.env.HASH_LENGTH, (err, derivedKey) => {
             if(err) reject(err);
             resolve(salt + derivedKey.toString('hex'));
         });
@@ -17,12 +15,12 @@ hash = (password) => {
 
 verify = (password, hash) => {
     return new Promise((resolve, reject) => {
-        const salt = hash.slice(0, 256);
+        const salt = hash.slice(0, process.env.HASH_LENGTH);
         const key = hash.slice(salt.length, hash.length);
 
         console.log("SALT: " + salt);
         console.log("KEY: " + key);
-        crypto.scrypt(password, salt, hash_length, (err, derivedKey) => {
+        crypto.scrypt(password, salt, process.env.HASH_LENGTH, (err, derivedKey) => {
             console.log("Hashed Password " + derivedKey.toString('hex'));
             console.log("DB Password " + key);
             if(err) reject(err);
