@@ -11,7 +11,7 @@ const morgan = require('morgan');
 
 app.use(cors(
     {
-        origin: [process.env.ORIGIN],
+        origin: [process.env.ORIGIN, process.env.ORIGIN_URL],
         credentials: true
     }
 ));
